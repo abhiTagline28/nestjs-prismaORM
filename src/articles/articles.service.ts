@@ -16,7 +16,9 @@ export class ArticlesService {
   }
 
   findAll() {
-    return this.prisma.article.findMany({ where: { published: true } });
+    return this.prisma.article.findMany({
+      where: { published: true },
+    });
   }
 
   findAllArticles() {
@@ -24,7 +26,10 @@ export class ArticlesService {
   }
 
   findOne(id: number) {
-    return this.prisma.article.findUnique({ where: { id } });
+    return this.prisma.article.findUnique({
+      where: { id },
+      include: { user: true },
+    });
   }
 
   update(id: number, updateArticleDto: UpdateArticleDto) {
